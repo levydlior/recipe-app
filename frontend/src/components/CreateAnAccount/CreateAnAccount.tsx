@@ -1,9 +1,10 @@
 import { CreateAnAccountFormDiv, AccountFormTextField, AccountForm } from "./CreateAnAccount.styles"
 import { ChangeEvent, useState } from "react";
-import { accountFormType, userType, errorsTypes } from "../../GeneralTypes/GeneralTypes";
+import { accountFormType, errorsTypes } from "../../GeneralTypes/GeneralTypes";
 import { GeneralAppButton } from './../../GeneralStyles/GeneralStyles'
 import { HandleCreateAnAccountRequest } from "./CreateAnAccount.request";
 import { CreateAccountFormProps } from "./CreateAnAccount.types";
+import { Link } from "react-router-dom";
 
 export const CreateAnAccount = (props: CreateAccountFormProps) => {
     const { onCreateAnAccount } = props
@@ -35,7 +36,7 @@ export const CreateAnAccount = (props: CreateAccountFormProps) => {
                 {currentErrors.errors.length > 0 && (<p>{currentErrors.errors}</p>)}
                 <AccountFormTextField size="small" required name="password" label="Password" variant="outlined" value={password} onChange={handleInputChange} />
                 <GeneralAppButton variant="outlined" type="submit">Create An Account</GeneralAppButton>
-                <GeneralAppButton variant="outlined">Already Have an Account?</GeneralAppButton>
+                <GeneralAppButton variant="outlined"> <Link to='/login'>Already Have an Account? </Link> </GeneralAppButton>
             </AccountForm>
         </CreateAnAccountFormDiv >
     )

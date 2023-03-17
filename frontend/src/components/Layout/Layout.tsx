@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router";
 import { userType } from "../../GeneralTypes/GeneralTypes";
 import { CreateAnAccount } from "../CreateAnAccount/CreateAnAccount";
+import Login from "../Login/Login";
 import { MainContent } from "../MainContent/MainContent";
 import { fetchLoggedUser, handleLogOut } from "./Layout.request";
 
@@ -30,6 +31,7 @@ export const Layout = () => {
         <Routes>
           <Route path="/" element={<CreateAnAccount onCreateAnAccount={handleAccountCreateOrLog} />} />
           <Route path="/create-account" element={<CreateAnAccount onCreateAnAccount={handleAccountCreateOrLog} />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
         :
         <Routes>
