@@ -1,7 +1,20 @@
+import { MarginProps } from "@mui/system";
 
-export const MainContent = () => {
+ type mainProps = {
+  handleLogOut: () => void
+}
+
+export const MainContent = (props: mainProps) => {
+const {handleLogOut} = props
+
+  
   return (
-    <div>Logged and good</div>
+    <div>
+      
+      <button onClick={() => handleLogOut()}>
+        log out
+      </button>
+    </div>
   )
 }
 

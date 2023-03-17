@@ -1,26 +1,28 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router";
 import { userType } from "../../GeneralTypes/GeneralTypes";
 import { CreateAnAccount } from "../CreateAnAccount/CreateAnAccount";
 import { MainContent } from "../MainContent/MainContent";
+import { fetchLoggedUser, handleLogOut } from "./Layout.request";
 
 
 export const Layout = () => {
   const [loggedUser, setLoggedUser] = useState<userType | undefined>(undefined);
   const [authorized, setAuthorized] = useState<boolean>(false);
 
+  useEffect(() => { fetchLoggedUser(setAuthorized, setLoggedUser) },
+    [])
 
-
-
-  // if (!authorized) {
-  //   return <div>false auth</div>;
-  // }
 
   const handleAccountCreateOrLog = (user: userType) => {
     setLoggedUser(user)
     setAuthorized(true)
   }
 
+
+  if (!authorized) {
+    return <div></div>;
+  }
 
   return (
     <div>
@@ -32,7 +34,7 @@ export const Layout = () => {
         :
         <Routes>
           <Route path="/"
-            element={<MainContent />}
+            element={<MainContent handleLogOut={() => handleLogOut(setAuthorized, setLoggedUser)} />}
           />
         </Routes>
       }
