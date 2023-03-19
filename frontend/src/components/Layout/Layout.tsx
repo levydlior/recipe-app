@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router";
 import { Routes, Route } from "react-router";
 import { userType } from "../../GeneralTypes/GeneralTypes";
 import { CreateAnAccount } from "../CreateAnAccount/CreateAnAccount";
@@ -14,10 +15,12 @@ export const Layout = () => {
   useEffect(() => { fetchLoggedUser(setAuthorized, setLoggedUser) },
     [])
 
+  const navigate = useNavigate()
 
   const handleAccountCreateOrLog = (user: userType) => {
     setLoggedUser(user)
     setAuthorized(true)
+    navigate("/")
   }
 
 
@@ -31,7 +34,7 @@ export const Layout = () => {
         <Routes>
           <Route path="/" element={<CreateAnAccount onCreateAnAccount={handleAccountCreateOrLog} />} />
           <Route path="/create-account" element={<CreateAnAccount onCreateAnAccount={handleAccountCreateOrLog} />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<Login onLoginSuccess={handleAccountCreateOrLog} />} />
         </Routes>
         :
         <Routes>

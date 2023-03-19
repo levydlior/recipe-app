@@ -1,10 +1,11 @@
-import { CreateAnAccountFormDiv, AccountFormTextField, AccountForm } from "./CreateAnAccount.styles"
 import { ChangeEvent, useState } from "react";
 import { accountFormType, errorsTypes } from "../../GeneralTypes/GeneralTypes";
-import { GeneralAppButton } from './../../GeneralStyles/GeneralStyles'
+import { GeneralAppButton, AccountFormDiv, AccountFormTextField, AccountForm } from './../../GeneralStyles/GeneralStyles'
 import { HandleCreateAnAccountRequest } from "./CreateAnAccount.request";
 import { CreateAccountFormProps } from "./CreateAnAccount.types";
 import { Link } from "react-router-dom";
+import Alert from '@mui/material/Alert';
+
 
 export const CreateAnAccount = (props: CreateAccountFormProps) => {
     const { onCreateAnAccount } = props
@@ -25,7 +26,7 @@ export const CreateAnAccount = (props: CreateAccountFormProps) => {
     }
 
     return (
-        <CreateAnAccountFormDiv>
+        <AccountFormDiv>
             <h2>
                 Create An Account:
             </h2>
@@ -33,12 +34,12 @@ export const CreateAnAccount = (props: CreateAccountFormProps) => {
                 onCreateAnAccount,
                 setCurrentErrors, setCreateAccountForm)}>
                 <AccountFormTextField size="small" required name="user_name" label="User Name" variant="outlined" value={userName} type="text" onChange={handleInputChange} />
-                {currentErrors.errors.length > 0 && (<p>{currentErrors.errors}</p>)}
+                {currentErrors.errors.length > 0 && (<Alert severity="error">{currentErrors.errors}</Alert>)}
                 <AccountFormTextField size="small" required name="password" label="Password" variant="outlined" value={password} onChange={handleInputChange} />
                 <GeneralAppButton variant="outlined" type="submit">Create An Account</GeneralAppButton>
                 <GeneralAppButton variant="outlined"> <Link to='/login'>Already Have an Account? </Link> </GeneralAppButton>
             </AccountForm>
-        </CreateAnAccountFormDiv >
+        </AccountFormDiv >
     )
 }
 
