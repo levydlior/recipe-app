@@ -1,6 +1,5 @@
 import {
   accountFormType,
-  errorsTypes,
   userType,
 } from "../../GeneralTypes/GeneralTypes";
 import { singleErrorType } from "./Login.types";
